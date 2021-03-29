@@ -14,7 +14,7 @@ if(empty($name)||empty($email)||empty($message))
 //validate against any email injection attempts
 if(IsInjected($email))
 {
-    echo "Bad email value!";
+    echo "Invalid email!";
     header('Location: index.html');
 }
 
@@ -27,8 +27,8 @@ $msg .= "User IP : ".$_SERVER["REMOTE_ADDR"]."\r\n";
 $msg .= "Browser info : ".$_SERVER["HTTP_USER_AGENT"]."\r\n"; 
 $msg .= "User come from : ".$_SERVER["SERVER_NAME"];
 
-$recipient = "me@mail.com";// Change the recipient email adress to your adrees  
-$sujet =  "Sender information";// This is subject you can change it
+$recipient = "Manjot.Sidhu@georgebrown.ca";
+$sujet =  "Sender information";
 $mailheaders = "From: $email\r\nReply-To: $email\r\nReturn-Path: $email\r\n";
 
 if (!$error){
@@ -36,16 +36,13 @@ if (!$error){
 		$sending = mail($recipient, $sujet, $msg, $mailheaders); 
 		
 		if ($sending) {
-				// If the message is sent we output a string to use it 
 				echo "SENDING"; 
 			} else {
-				// Display Error Message
 				echo $errorMessage; 
 			}
 	} else {
-		echo $error; // Display Error Message
+		echo $error; 
 	}
-
 
 // Function to validate against any email injection attempts
 function IsInjected($str)
